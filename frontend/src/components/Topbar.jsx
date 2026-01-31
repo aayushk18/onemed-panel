@@ -5,7 +5,10 @@ import { useAuthStore } from "../utils/useAuthStore";
 export default function Topbar({ setSidebarOpen }) {
   const [open, setOpen] = useState(false);
 
-  const { logout } = useAuthStore();
+  const { logout, authUser } = useAuthStore();
+
+
+
 
   return (
     <header className="bg-white px-6 lg:px-8 py-4

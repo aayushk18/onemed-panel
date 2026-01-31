@@ -9,6 +9,7 @@ import {
   BarChart3,
   X
 } from "lucide-react";
+import { useAuthStore } from "../utils/useAuthStore";
 
 const menuItems = [
   { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
@@ -21,6 +22,10 @@ const menuItems = [
 ];
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
+
+
+  const { authUser } = useAuthStore();
+
   return (
     <aside
       className={`fixed lg:static z-40 h-full w-72 bg-white
@@ -32,10 +37,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       {/* Header */}
       <div className="px-6 py-6 border-b">
         <h1 className="text-xl font-bold text-blue-700">
-          OneMed
+          {`${authUser.firstName} ${authUser.lastName}`}
         </h1>
         <p className="text-xs text-gray-500">
-          Medical Admin Panel
+          OneMed Admin Panel
         </p>
       </div>
 
