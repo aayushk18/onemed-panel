@@ -24,6 +24,8 @@ import ShowAllResources from "./components/admin/academics/materials/ShowAllReso
 import MaterialLayout from "./components/admin/academics/materials/MaterialLayout";
 import NewRegistrationList from "./components/admin/admissions/registrations/NewRegistrationList";
 import EnquiryList from "./components/admin/website/enquiry/EnquiryList";
+import EnquiryLayout from "./components/admin/website/enquiry/EnquiryLayout";
+import ManageEnquiries from "./components/admin/website/enquiry/ManageEnquiries";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -85,7 +87,10 @@ function App() {
           <Route path="website" element={<WebsiteLayout />}>
             <Route index element={<WebsiteHome />} />
             <Route path="panel" element={<WebsitePanel />} />
-            <Route path="enquiry" element={<EnquiryList />} />
+            <Route path="enquiry" element={<EnquiryLayout />} >
+              <Route index element={<EnquiryList />} />
+              <Route path="manage" element={<ManageEnquiries />} />
+            </Route>
             <Route path="resources" element={<WebsiteResourcesLayout />} >
               <Route index element={<WebsiteResourcesTable />} />
               <Route path="add-materials" element={<AddResources />} />

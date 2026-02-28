@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useAdminStore } from "../../../../utils/useAuthStore";
 import { useEffect, useMemo, useState } from "react";
 
 const EnquiryList = () => {
     const { getAllEnquiry } = useAdminStore();
+
+    const navigate = useNavigate();
 
     const [enquiryList, setEnquiryList] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -42,7 +45,6 @@ const EnquiryList = () => {
         setSelectedEnquiry(null);
     };
 
-    // ✅ Filtered list (search over: name/email/phone/subject/message)
     const filteredEnquiries = useMemo(() => {
         const q = search.trim().toLowerCase();
         if (!q) return enquiryList;
@@ -125,6 +127,12 @@ const EnquiryList = () => {
                     </select>
 
                     <button
+                        onClick={() => navigate("/admin/website/enquiry/manage")}
+                        className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
+                    >
+                        Manage
+                    </button>
+                    <button
                         onClick={loadData}
                         className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                     >
@@ -154,7 +162,7 @@ const EnquiryList = () => {
                             <tr>
                                 <th className="text-left px-4 py-3">#</th>
                                 <th className="text-left px-4 py-3">Name</th>
-                                <th className="text-left px-4 py-3">Email</th>
+                                <th className="text-left px-4 py-3">Message</th>
                                 <th className="text-left px-4 py-3">Phone</th>
                                 <th className="text-left px-4 py-3">Subject</th>
                                 <th className="text-left px-4 py-3">Date</th>
@@ -186,7 +194,7 @@ const EnquiryList = () => {
                                             <td className="px-4 py-3 font-medium text-gray-800">
                                                 {displayName}
                                             </td>
-                                            <td className="px-4 py-3">{enquiry.email || "-"}</td>
+                                            <td className="px-4 py-3">{enquiry.message || "-"}</td>
                                             <td className="px-4 py-3">{enquiry.phone || "-"}</td>
                                             <td className="px-4 py-3">{enquiry.subject || "-"}</td>
                                             <td className="px-4 py-3">

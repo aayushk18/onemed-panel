@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Enquiry from "../models/enquiry.model.js";
 import StudyMaterial from "../models/studyMaterial.model.js";
 
@@ -245,3 +246,44 @@ export const getEnquiry = async (req, res) => {
     }
 };
 
+
+export const deleteEnquiry = async (req, res) => {
+    try {
+        const { ids } = req.body;
+
+
+        if (!Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "ids must be a non-empty array",
+            });
+        }
+
+        // remove duplicates + ensure strings
+        const uniqueIds = [...new Set(ids)].map(String);
+
+        // validate ObjectIds
+        const invalidIds = uniqueIds.filter((id) => !mongoose.Types.ObjectId.isValid(id));
+        if (invalidIds.length > 0) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid id(s)",
+                invalidIds,
+            });
+        }
+
+        const result = await Enquiry.deleteMany({ _id: { $in: uniqueIds } });
+
+        return res.status(200).json({
+            success: true,
+            message: "Enquiries deleted successfully",
+            deletedCount: result.deletedCount,
+        });
+    } catch (error) {
+        console.error("Delete Enquiry Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: error.message || "Server error",
+        });
+    }
+};

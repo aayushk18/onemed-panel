@@ -125,7 +125,6 @@ export const useAdminStore = create((set) => ({
             const res = await axiosInstance.get('/user/admin/academics/materials/get-pdf')
             const data = await res.data
             const Data = data.data;
-            console.log(Data);
 
 
             return Data;
@@ -181,16 +180,36 @@ export const useAdminStore = create((set) => ({
         try {
 
 
-            const res = await axiosInstance.get('/user/admin/website/enquiry/get-enquiry')
+            const res = await axiosInstance.get('/user/admin/website/enquiry/get-enquiries')
             const data = await res.data
             const Data = data.data;
-            console.log(Data);
+
 
 
             return Data;
 
         } catch (error) {
             toast.error("Error in get All Enquiry", error.response.data.message)
+        }
+    },
+
+
+    deleteSelectedEnquiries: async (data) => {
+
+        try {
+            console.log(data);
+
+            const res = await axiosInstance.delete("/user/admin/website/enquiry/delete-enquiries", {
+                data: { ids: data }, // ✅ correct for DELETE
+                headers: { "Content-Type": "application/json" },
+            });
+
+
+
+            toast.success("Selected Enquiry Deleted Successfully")
+
+        } catch (error) {
+            toast.error("Error in delete Selected Enquiry", error.response.data.message)
         }
     },
 
