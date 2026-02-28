@@ -113,7 +113,69 @@ export const useAuthStore = create((set) => ({
         }
     }
 
-
-
-
 }))
+
+
+export const useAdminStore = create((set) => ({
+
+    getPdfResources: async () => {
+        try {
+
+
+            const res = await axiosInstance.get('/user/admin/academics/materials/get-pdf')
+            const data = await res.data
+            const Data = data.data;
+            console.log(Data);
+
+
+            return Data;
+
+        } catch (error) {
+            toast.error("Error in getPdfResources", error.response.data.message)
+        }
+
+    },
+
+    addPdfResource: async (data) => {
+        try {
+            console.log(data);
+            const res = await axiosInstance.post('/user/admin/academics/materials/add-pdf', data)
+            toast.success("PDF Resource Added Successfully")
+
+
+
+        } catch (error) {
+            toast.error("Error in addPdfResource", error.response.data.message)
+        }
+    },
+
+    updatePdfResource: async (data) => {
+        try {
+
+            const res = await axiosInstance.put('/user/admin/academics/materials/update-pdf', data)
+            toast.success("PDF Resource Updated Successfully")
+
+
+
+        } catch (error) {
+            toast.error("Error in updatePdfResource", error)
+            console.log(error);
+
+        }
+    },
+
+    updatePdfVisibility: async (data) => {
+        try {
+
+
+            const res = await axiosInstance.put('/user/admin/academics/materials/update-pdf-visibility', data)
+            toast.success("PDF Visibility Updated Successfully")
+
+        } catch (error) {
+            toast.error("Error in updatePdfVisibility", error)
+            console.log(error);
+        }
+    },
+
+
+}));

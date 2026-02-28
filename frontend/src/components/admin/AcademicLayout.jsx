@@ -4,10 +4,10 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 
 const tabs = [
-  { name: "Students", path: "/website/panel", icon: LayoutPanelTop },
-  { name: "Classes", path: "/website/resources", icon: FileText },
-  { name: "Courses", path: "/website/blogs", icon: BookOpen },
-  { name: "Materials", path: "/website/materials", icon: Info },
+  { name: "Students", path: "/admin/academics/students", icon: LayoutPanelTop },
+  { name: "Classes", path: "/admin/academics/classes", icon: FileText },
+  { name: "Courses", path: "/admin/academics/courses", icon: BookOpen },
+  { name: "Materials", path: "/admin/academics/materials", icon: Info },
 ];
 
 
@@ -25,7 +25,7 @@ const AcademicLayout = () => {
             <NavLink
               key={name}
               to={path}
-              end
+
               className={({ isActive }) =>
                 `flex items-center gap-2 px-4 py-2 rounded-xl
                   text-sm font-medium transition-all
@@ -42,7 +42,7 @@ const AcademicLayout = () => {
         </div>
       </div>
 
-      {/* Sub Page Content */}
+
       <Outlet />
     </div>
   )

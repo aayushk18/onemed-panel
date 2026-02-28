@@ -17,9 +17,11 @@ import Login from "./pages/Login";
 import AdmissionsLayout from "./components/admin/AdmissionsLayout";
 import ReportsLayout from "./components/admin/ReportsLayout";
 import WebsiteResourcesLayout from "./components/admin/website/WebsiteResourcesLayout";
-import AddResources from "./components/admin/website/resources/AddResources";
+import AddResources from "./components/admin/academics/materials/AddResources";
 import WebsiteResourcesTable from "./components/admin/website/resources/WebsiteResourcesTable";
 import Signup from "./pages/Signup";
+import ShowAllResources from "./components/admin/academics/materials/ShowAllResources";
+import MaterialLayout from "./components/admin/academics/materials/MaterialLayout";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -76,7 +78,7 @@ function App() {
 
         <Route path='/admin' element={userType == 'admin' ? <AdminLayout /> : <Navigate to='/login' />} >
           <Route index element={<AdminDashboard />} />
-          <Route path="home" element={<Home />} />
+          <Route path="home" element={<AdminDashboard />} />
           <Route path="faculty" element={<Faculty />} />
           <Route path="website" element={<WebsiteLayout />}>
             <Route index element={<WebsiteHome />} />
@@ -90,11 +92,14 @@ function App() {
             {/* <Route path="blogs" element={<WebsiteBlogs />} /> */}
             <Route path="about" element={<WebsiteAbout />} />
           </Route>
-          <Route path="academic" element={<AcademicLayout />}>
+          <Route path="academics" element={<AcademicLayout />}>
             <Route path="students" element={<WebsitePanel />} />
             <Route path="classes" element={<WebsitePanel />} />
             <Route path="courses" element={<WebsitePanel />} />
-            <Route path="materials" element={<WebsitePanel />} />
+            <Route path="materials" element={<MaterialLayout />} >
+              <Route index element={<ShowAllResources />} />
+              <Route path="add-materials" element={<AddResources />} />
+            </Route>
           </Route>
 
           <Route path="admissions" element={<AdmissionsLayout />}></Route>

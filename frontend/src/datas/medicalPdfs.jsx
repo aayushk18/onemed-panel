@@ -1,4 +1,6 @@
 export const medicalPdfs = [
+
+
     {
         category_name: "Anatomy",
         web_view: false,
@@ -89,7 +91,6 @@ export const medicalPdfs = [
                     },
                 ],
             },
-
             {
                 sub_category: "Histology",
                 web_view: true,
@@ -144,7 +145,6 @@ export const medicalPdfs = [
                     },
                 ],
             },
-
             {
                 sub_category: "Embryology",
                 web_view: true,
@@ -193,7 +193,6 @@ export const medicalPdfs = [
             },
         ],
     },
-
     {
         category_name: "Physiology",
         web_view: false,
@@ -917,5 +916,6 @@ export const medicalPdfs = [
             },
         ],
     }
+
 
 ];

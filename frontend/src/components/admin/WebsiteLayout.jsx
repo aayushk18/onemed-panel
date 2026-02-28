@@ -7,16 +7,15 @@ import {
 } from "lucide-react";
 
 const tabs = [
-  { name: "Panel", path: "/website/panel", icon: LayoutPanelTop },
-  { name: "Resources", path: "/website/resources", icon: FileText },
-  { name: "Blogs", path: "/website/blogs", icon: BookOpen },
-  { name: "About", path: "/website/about", icon: Info },
+  { name: "Panel", path: "/admin/website/panel", icon: LayoutPanelTop },
+  { name: "Resources", path: "/admin/website/resources", icon: FileText },
+  { name: "Blogs", path: "/admin/website/blogs", icon: BookOpen },
+  { name: "About", path: "/admin/website/about", icon: Info },
 ];
 
 export default function WebsiteLayout() {
   return (
     <div className="space-y-6">
-      {/* Secondary Topbar */}
       <div
         className="bg-white rounded-2xl px-6 py-4
         shadow-[0_6px_20px_rgba(0,0,0,0.06)]"
@@ -26,14 +25,13 @@ export default function WebsiteLayout() {
             <NavLink
               key={name}
               to={path}
-              end
+
               className={({ isActive }) =>
                 `flex items-center gap-2 px-4 py-2 rounded-xl
                 text-sm font-medium transition-all
-                ${
-                  isActive
-                    ? "bg-blue-600 text-white shadow"
-                    : "text-gray-600 hover:bg-[#E8F0FE] hover:text-blue-700"
+                ${isActive
+                  ? "bg-blue-600 text-white shadow"
+                  : "text-gray-600 hover:bg-[#E8F0FE] hover:text-blue-700"
                 }`
               }
             >

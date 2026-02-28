@@ -12,11 +12,10 @@ import {
 import { useAuthStore } from "../utils/useAuthStore";
 
 const menuItems = [
-  { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
   { name: "Home", path: "/admin/home", icon: Home },
   { name: "Faculty", path: "/admin/faculty", icon: Users },
   { name: "Website", path: "/admin/website", icon: Globe },
-  { name: "Academic", path: "/admin/academic", icon: BookOpen },
+  { name: "Academic", path: "/admin/academics", icon: BookOpen },
   { name: "Admission", path: "/admin/admissions", icon: ClipboardList },
   { name: "Reports & Analysis", path: "/admin/reports", icon: BarChart3 },
 ];
@@ -58,7 +57,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <NavLink
             key={name}
             to={path}
-            end
+
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium

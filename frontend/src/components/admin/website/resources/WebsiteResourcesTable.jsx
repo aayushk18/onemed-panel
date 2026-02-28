@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
     Search,
     FileText,
@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { medicalPdfs } from "../../../../datas/medicalPdfs.jsx";
+import { useAdminStore } from "../../../../utils/useAuthStore.jsx";
 
 export default function WebsiteResourcesTable() {
 
@@ -17,7 +18,27 @@ export default function WebsiteResourcesTable() {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
 
+    const { updatePdfVisibility, getPdfResources } = useAdminStore();
+
     const pageSize = 6;
+
+    const loadData = async () => {
+        const data = await getPdfResources();
+
+        if (Array.isArray(data) && data.length > 0) {
+            setData(data);
+            console.log(data);
+
+        } else {
+            setData(medicalPdfs);
+        }
+    };
+
+    useEffect(() => {
+
+
+        loadData();
+    }, []);
 
     /* ================= TOGGLE WEB VIEW ================= */
     const toggleWebView = ({ catIdx, subIdx, pdfIdx }) => {
@@ -87,7 +108,12 @@ export default function WebsiteResourcesTable() {
     );
 
     const handleUpdate = () => {
+
+
         console.log("UPDATED DATA 👉", data);
+
+        updatePdfVisibility(data)
+
     };
 
     return (
