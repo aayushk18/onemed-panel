@@ -177,5 +177,22 @@ export const useAdminStore = create((set) => ({
         }
     },
 
+    getAllEnquiry: async () => {
+        try {
+
+
+            const res = await axiosInstance.get('/user/admin/website/enquiry/get-enquiry')
+            const data = await res.data
+            const Data = data.data;
+            console.log(Data);
+
+
+            return Data;
+
+        } catch (error) {
+            toast.error("Error in get All Enquiry", error.response.data.message)
+        }
+    },
+
 
 }));

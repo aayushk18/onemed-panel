@@ -9,7 +9,7 @@ import {
 const tabs = [
   { name: "Panel", path: "/admin/website/panel", icon: LayoutPanelTop },
   { name: "Resources", path: "/admin/website/resources", icon: FileText },
-  { name: "Blogs", path: "/admin/website/blogs", icon: BookOpen },
+  { name: "Enquiry", path: "/admin/website/enquiry", icon: BookOpen },
   { name: "About", path: "/admin/website/about", icon: Info },
 ];
 

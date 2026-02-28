@@ -10,10 +10,9 @@ import {
 } from "lucide-react";
 
 const tabs = [
-  { name: "Panel", path: "/admissions/registrations", icon: LayoutPanelTop },
-  { name: "Resources", path: "/admissions/admitted", icon: FileText },
-  { name: "Blogs", path: "/admissions/exiting-students", icon: BookOpen },
-  { name: "About", path: "/admissions/about", icon: Info },
+  { name: "Registrations", path: "/admin/admissions/registrations", icon: LayoutPanelTop },
+  { name: "Admitted", path: "/admin/admissions/admitted", icon: FileText },
+  { name: "Exited Students", path: "/admin/admissions/exited-students", icon: BookOpen },
 ];
 
 const AdmissionsLayout = () => {

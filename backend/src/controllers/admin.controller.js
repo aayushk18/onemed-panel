@@ -1,3 +1,4 @@
+import Enquiry from "../models/enquiry.model.js";
 import StudyMaterial from "../models/studyMaterial.model.js";
 
 
@@ -222,6 +223,25 @@ export const updatePdfVisibility = async (req, res) => {
     } catch (error) {
         console.error("Update PDF Visibility Error:", error);
         res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+export const getEnquiry = async (req, res) => {
+    try {
+        const data = await Enquiry.find().sort();
+
+        res.status(200).json({
+            success: true,
+            count: data.length,
+            data,
+        });
+    } catch (error) {
+        console.error("Fetch Enquiry Error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch enquiry",
+        });
     }
 };
 
